@@ -1,0 +1,23 @@
+
+
+1- custom_data = filebase64("C:/Users/Fran/scripts/ansible.sh")
+
+2-
+locals {
+  custom_data = <<CUSTOM_DATA
+  #!/bin/bash
+  sudo apt-add-repository ppa:ansible/ansible
+  sudo apt update
+  sudo apt install -y ansible
+
+
+  }
+
+
+
+
+
+#!/bin/bash
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install -y ansible

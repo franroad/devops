@@ -1,0 +1,57 @@
+- hosts: webservers
+  tasks:
+    - name: Update cache 
+      yum:
+       update_cache: true
+      become: true
+
+
+
+    - name: Install podman
+      ansible.builtin.yum:
+        name: "podman"
+        state: present
+      become: true
+
+    - name: Login to registry and create ${XDG_RUNTIME_DIR}/containers/auth.json
+      containers.podman.podman_login:
+        username: acrlabfran
+        password: '+DFumg9nFa/w2Mk6bLx74lkLELQc4wU9aOvL9IQBjK+ACRCAyrxK'
+        registry: acrlabfran.azurecr.io
+      become: true
+
+    - name: Pull an image
+      containers.podman.podman_image:
+        name: acrlabfran.azurecr.io/nginx:casopractico2
+      become: true
+
+    - name: create container
+      containers.podman.podman_container:
+        name: web-server
+        image: acrlabfran.azurecr.io/nginx:casopractico2
+        state: started
+        detach: true
+        net: host
+        exposed_ports:
+         - 443
+        ports:
+        
+         - 443:443
+        restart_policy: "always"
+      become: true
+
+    - name: Install a latest ufw
+      yum:
+       name: ufw
+       state: latest
+      become: true 
+
+
+    - name: Allow all access to tcp port 80 and 443
+      community.general.ufw:
+        state: enabled
+        rule: allow
+        port: '80,443'
+        proto: tcp
+      become: true
+    

@@ -1,0 +1,7 @@
+- hosts: webservers
+  tasks:
+    - name: Update cache 
+      yum:
+       update_cache: true
+      become: true
+      

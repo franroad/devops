@@ -1,0 +1,27 @@
+- hosts: localhost
+  pre_tasks:
+    - name: Create a k8s namespace
+      kubernetes.core.k8s:
+       name: devops-tools
+       api_version: v1
+       kind: Namespace
+       state: present
+  post_tasks:
+    - name: create pvc crd
+      kubernetes.core.k8s:
+       state: present
+       src: crd/pvc.yaml
+
+    
+    - name: create deployment
+      kubernetes.core.k8s:
+       state: present
+       src: crd/deployment.yaml
+    
+    
+    - name: create service
+      kubernetes.core.k8s:
+       state: present
+       src: crd/svc.yaml
+    
+  
