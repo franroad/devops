@@ -19,7 +19,7 @@ spec:
         image: {{ .Values.blog.image }}
         imagePullPolicy: {{ .Values.blog.imagePullPolicy }}
         ports:
-        - containerPort: {{ .Valuses.blog.containerPort }}
+        - containerPort: {{ .Values.blog.containerPort }}
         env:
         - name: {{ .Values.blog.url }}
           value: {{ .Values.blog.urlValue }}
