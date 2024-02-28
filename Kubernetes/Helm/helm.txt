@@ -64,3 +64,12 @@ Podemos cambiar el values.yaml con los valores que nosotros queramos.
 templates--> pluggable, reusable versability, maintanability. based on GO
 
 {{.Values.image.registry}}
+
+This is the structure: (the templates folder is required) is where we put our templates
+
+testchart --> main folder that groups all the necesary files/folders
+├── Chart.yaml -->chart it self
+├── templates --> contains de templates for the CRD
+│   ├── deployment.yaml --> the templates 
+│   └── service.yaml
+└── values.yaml --> the values for the templates, the templates fill their "gaps" with the values declared here
