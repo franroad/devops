@@ -2,7 +2,7 @@ deployment:
   name: apache-deployment
   replicas: 2
   app: httpd
-  label: app:httpd
+  label: httpd
   image: httpd:latest
   containerPort: 80
 
