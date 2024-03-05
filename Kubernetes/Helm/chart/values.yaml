@@ -1,0 +1,15 @@
+deployment:
+  name: apache-deployment
+  replicas: 2
+  app: httpd
+  label: app:httpd
+  image: httpd:latest
+  containerPort: 80
+
+service:
+  name: nodeport-httpd-service
+  app: httpd
+  port: 80
+  targetPort: 80
+  type: NodePort
+  nodePort: 30080
