@@ -68,8 +68,14 @@ templates--> pluggable, reusable versability, maintanability. based on GO
 This is the structure: (the templates folder is required) is where we put our templates
 
 testchart --> main folder that groups all the necesary files/folders
-├── Chart.yaml -->chart it self
+├── Chart.yaml -->chart itself
 ├── templates --> contains de templates for the CRD
 │   ├── deployment.yaml --> the templates 
 │   └── service.yaml
 └── values.yaml --> the values for the templates, the templates fill their "gaps" with the values declared here
+
+values.yaml
+
+Subchart in charts directory, subchart, 
+global value can be accessed by the both the pareint and any subcharts that are present.
+
