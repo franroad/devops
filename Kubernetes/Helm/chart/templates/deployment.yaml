@@ -1,21 +1,22 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion:  apps/v1
+kind:  Deployment
 metadata:
   name: {{ .Values.deployment.name }}
   labels:
-    app: {{.Values.deployment.label}}    
+    app: {{ .Values.deployment.app }}
 spec:
   replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.deployment.app }}
+       app: {{ .Values.deployment.app }}
   template:
     metadata:
       labels:
-        {{ .Values.deployment.label }}
+        app:  {{ .Values.deployment.app }}
     spec:
       containers:
       - name: {{ .Values.deployment.name }}
         image: {{ .Values.deployment.image }}
+        imagePullPolicy: Always
         ports:
-        - containerPort: {{.Values.deployment.containerPort}}
+        - containerPort: {{ .Values.deployment.containerPort }}
