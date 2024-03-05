@@ -3,11 +3,12 @@ kind: Service
 metadata:
   name: {{.Values.service.name}}
 spec:
+  type: {{.Values.service.type}}
   selector:
     app: {{.Values.service.app}}
   ports:
   - name: http
     port: {{.Values.service.port}}
     targetPort: {{.Values.service.targetPort}}
-    nodePort: {{.values.service.nodePort}}
-  type: {{.Values.service.type}}
+    nodePort: {{.Values.service.nodePort}}
+  
